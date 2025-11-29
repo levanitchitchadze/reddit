@@ -16,19 +16,19 @@ import java.util.Properties;
 
 public class Hooks {
 
-    AndroidDriver androidDriver;
-    Properties prop=new Properties();
-    String configPropertiesFile="src/test/resources/config.properties";
+    static AndroidDriver androidDriver;
+    private static Properties prop = new Properties();
+    static String configPropertiesFile = "src/test/resources/config.properties";
 
     @Before
-    public void SetUpApplication() {
+    public static void SetUpApplication() {
         prop = ReadPropertyFile.readProperties(configPropertiesFile);
         DesiredCapabilities caps = new DesiredCapabilities();
 
-        caps.setCapability("platformName","Android");
-        caps.setCapability("appium:deviceName",prop.getProperty("device.serialNumber"));
-        caps.setCapability("automationName","UIautomator2");
-        caps.setCapability("appium:app",  prop.getProperty("app.path"));
+        caps.setCapability("platformName", "Android");
+        caps.setCapability("appium:deviceName", prop.getProperty("device.serialNumber"));
+        caps.setCapability("automationName", "UIautomator2");
+        caps.setCapability("appium:app", prop.getProperty("app.path"));
         caps.setCapability("appPackage", "com.reddit.frontpage");
         caps.setCapability("appActivity", "com.reddit.launch.main.MainActivity");
         caps.setCapability("autoGrantPermissions", true);
@@ -37,17 +37,14 @@ public class Hooks {
         androidDriver = new AndroidDriver(caps);
         DriverManager.setDriver(androidDriver);
         androidDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
     }
 
 
-
-
-
     @After
-    public void TearDownApplication(){
-        if (androidDriver!=null) androidDriver.quit();
-        prop=null;
-
+    public static void TearDownApplication() {
+        if (androidDriver != null) androidDriver.quit();
+        prop = null;
     }
 
 }

@@ -12,6 +12,7 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.Assertion;
@@ -30,7 +31,10 @@ public class SearchSteps {
     private Properties prop = new Properties();
     private String configPropertiesFile = "src/test/resources/config.properties";
 
-    @FindBy(id = "feed_control_search_icon")
+    @FindAll({
+            @FindBy(id = "action_search"),
+            @FindBy(id = "feed_control_search_icon")
+    })
     private WebElement SEARCH_ICON;
 
     @FindBy(id = "search")
@@ -57,7 +61,6 @@ public class SearchSteps {
     @When("the user enters text in the search field")
     public void the_user_enters_text_in_the_search_field() {
         SEARCH_ICON.click();
-        SEARCH_FIELD.clear();
         SEARCH_FIELD.sendKeys(faker.superhero().name());
         driver.pressKey(new KeyEvent(AndroidKey.ENTER));
     }

@@ -3,10 +3,10 @@ package steps;
 import drivers.DriverManager;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.By;
 import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,9 +18,9 @@ import utils.ReadPropertyFile;
 import java.util.Properties;
 
 public class ProfileSteps {
-    private LoginPage loginPage=new LoginPage();
-    private static final Assertion assertion=new Assertion();
-    private final AndroidDriver driver= DriverManager.getDriver();
+    private LoginPage loginPage;
+    private static final Assertion assertion = new Assertion();
+    private final AndroidDriver driver = DriverManager.getDriver();
 
     @FindBy(id = "inner_peeking_snoovatar")
     private WebElement AVATAR;
@@ -30,21 +30,25 @@ public class ProfileSteps {
     @FindBy(id = "snoovatar")
     private WebElement LARGE_AVATAR_IMAGE;
 
-    private Properties prop=new Properties();
-    private String configPropertiesFile="src/test/resources/config.properties";
+    private Properties prop = new Properties();
+    private String configPropertiesFile = "src/test/resources/config.properties";
 
 
+    @Before
+    public void init() {
+        loginPage = new LoginPage();
+    }
 
     @Given("the user avatar is visible")
     public void the_application_is_open() {
-        prop= ReadPropertyFile.readProperties(configPropertiesFile);
+        prop = ReadPropertyFile.readProperties(configPropertiesFile);
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 
         try {
             AVATAR.isDisplayed();
-        }catch (NotFoundException ignored){
+        } catch (NotFoundException ignored) {
             loginPage.moveToPage();
-            loginPage.login(prop.getProperty("user.email"),prop.getProperty("user.password"));
+            loginPage.login(prop.getProperty("user.email"), prop.getProperty("user.password"));
 
         }
 
@@ -55,8 +59,8 @@ public class ProfileSteps {
         try {
             AVATAR.click();
 
-        }catch (NotFoundException nfe){
-            throw new RuntimeException("Can't find avatar element: "+nfe);
+        } catch (NotFoundException nfe) {
+            throw new RuntimeException("Can't find avatar element: " + nfe);
         }
     }
 
@@ -64,13 +68,13 @@ public class ProfileSteps {
     public void the_user_taps_the_button() {
         try {
             PROFILE_BTN.click();
-        }catch (NotFoundException nfe){
-            throw new RuntimeException("Can't find profile button in sidebar: "+nfe);
+        } catch (NotFoundException nfe) {
+            throw new RuntimeException("Can't find profile button in sidebar: " + nfe);
         }
     }
 
     @Then("the user is redirected to the profile page")
     public void the_user_is_redirected_to_the_profile_page() {
-        assertion.assertTrue(LARGE_AVATAR_IMAGE.isDisplayed(),"The profile page could not be loaded");
+        assertion.assertTrue(LARGE_AVATAR_IMAGE.isDisplayed(), "The profile page could not be loaded");
     }
 }
