@@ -6,9 +6,15 @@ import io.cucumber.testng.CucumberOptions;
 
 
 //This is testng cucumber runner class
+//
+//
 @CucumberOptions(
         features = "src/test/resources/features",
-        glue = {"steps"}
+        glue = {"steps"},
+        plugin = {
+                "pretty",
+                "html:cucumber-reports/html-report.html"
+        }
 )
 public class CucumberRunner extends AbstractTestNGCucumberTests {
 }

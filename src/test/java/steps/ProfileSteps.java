@@ -37,13 +37,9 @@ public class ProfileSteps {
     private String configPropertiesFile = "src/test/resources/config.properties";
 
 
-    @Before
-    public void init() {
-        loginPage = new LoginPage();
-    }
-
     @Given("the user avatar is visible")
     public void the_application_is_open() {
+        loginPage = new LoginPage();
         prop = ReadPropertyFile.readProperties(configPropertiesFile);
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 
