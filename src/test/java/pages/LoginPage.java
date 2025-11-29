@@ -6,6 +6,7 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -24,9 +25,11 @@ public class LoginPage {
     @FindBy(id = "com.reddit.frontpage:id/inner_user_icon")
     private WebElement ADD_ACCOUNT_BTN;
 
-    @FindBy(xpath = "(//android.widget.EditText[@resource-id=\"text_auto_fill\"])[1]")
+
+
+    @FindBy(xpath = "//*[@resource-id='email_username_text_field']/*[@resource-id='text_auto_fill']")
     private WebElement EMAIL_INP;
-    @FindBy(xpath = "(//android.widget.EditText[@resource-id=\"text_auto_fill\"])[2]")
+    @FindBy(xpath = "//*[@resource-id='password_text_field']/*[@resource-id='text_auto_fill']")
     private WebElement PASSWORD_INP;
     @FindBy(xpath = "//android.view.View[@resource-id=\"continue_button\"]")
     private WebElement CONTINUE_BTN;

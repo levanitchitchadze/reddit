@@ -24,7 +24,7 @@ public class ProfileSteps {
     private String AVATAR_SELECTOR="inner_peeking_snoovatar";
     @FindBy(id = "inner_peeking_snoovatar")
     private WebElement AVATAR;
-    @FindBy(xpath = "//android.widget.Button[@content-desc=\"Profile\"]\n")
+    @FindBy(xpath = "//android.widget.Button[@content-desc=\"Profile\"]")
     private WebElement PROFILE_BTN;
 
     @FindBy(id = "snoovatar")
