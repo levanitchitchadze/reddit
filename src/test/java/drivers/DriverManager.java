@@ -6,6 +6,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+//Stores and manages an instance of the driver
 public class DriverManager {
 
     protected static AndroidDriver androidDriver;

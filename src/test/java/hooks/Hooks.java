@@ -7,13 +7,11 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import drivers.DriverManager;
 import utils.ReadPropertyFile;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.time.Duration;
 import java.util.Properties;
 
+
+//Cucumber hooks for environment preparation
 public class Hooks {
 
     static AndroidDriver androidDriver;

@@ -17,6 +17,9 @@ import utils.ReadPropertyFile;
 
 import java.util.Properties;
 
+
+//Profile page step definitions
+//There is only includes one element so it doesn't need Page class
 public class ProfileSteps {
     private LoginPage loginPage;
     private static final Assertion assertion = new Assertion();

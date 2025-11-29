@@ -21,6 +21,8 @@ import utils.ReadPropertyFile;
 
 import java.util.Properties;
 
+//Search functionality step definitions
+//There is only includes one element so it doesn't need Page class
 public class SearchSteps {
 
     private LoginPage loginPage = new LoginPage();

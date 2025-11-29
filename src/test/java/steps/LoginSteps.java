@@ -10,6 +10,8 @@ import utils.ReadPropertyFile;
 
 import java.util.Properties;
 
+
+//Login page step definitions
 public class LoginSteps {
 
 
