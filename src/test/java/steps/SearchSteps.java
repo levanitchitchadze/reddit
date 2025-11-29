@@ -9,7 +9,6 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
@@ -46,7 +45,7 @@ public class SearchSteps {
     private WebElement POST_BTN;
 
     @Given("the search field is visible")
-    public void the_application_is_open() {
+    public void applicationIsOpen() {
         prop = ReadPropertyFile.readProperties(configPropertiesFile);
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 
@@ -61,14 +60,14 @@ public class SearchSteps {
     }
 
     @When("the user enters text in the search field")
-    public void the_user_enters_text_in_the_search_field() {
+    public void EnterTextInSearchField() {
         SEARCH_ICON.click();
         SEARCH_FIELD.sendKeys(faker.superhero().name());
         driver.pressKey(new KeyEvent(AndroidKey.ENTER));
     }
 
     @Then("the user is redirected to the search results page")
-    public void the_user_is_redirected_to_the_search_results_page() {
+    public void redirectedToSearchResultPage() {
         assertion.assertTrue(POST_BTN.isDisplayed(), "The profile page could not be loaded");
     }
 }

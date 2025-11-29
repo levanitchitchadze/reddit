@@ -38,7 +38,7 @@ public class ProfileSteps {
 
 
     @Given("the user avatar is visible")
-    public void the_application_is_open() {
+    public void applicationIsOpen() {
         loginPage = new LoginPage();
         prop = ReadPropertyFile.readProperties(configPropertiesFile);
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -54,7 +54,7 @@ public class ProfileSteps {
     }
 
     @When("the user taps the avatar")
-    public void the_user_taps_the_avatar() {
+    public void tapTheAvatar() {
         try {
             AVATAR.click();
 
@@ -64,7 +64,7 @@ public class ProfileSteps {
     }
 
     @When("the user taps the View Profile button")
-    public void the_user_taps_the_button() {
+    public void tapProfileButton() {
         try {
             PROFILE_BTN.click();
         } catch (NotFoundException nfe) {
@@ -73,7 +73,7 @@ public class ProfileSteps {
     }
 
     @Then("the user is redirected to the profile page")
-    public void the_user_is_redirected_to_the_profile_page() {
+    public void redirectToProfilePage() {
         assertion.assertTrue(LARGE_AVATAR_IMAGE.isDisplayed(), "The profile page could not be loaded");
     }
 }

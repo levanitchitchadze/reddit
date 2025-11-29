@@ -22,7 +22,7 @@ public class LoginSteps {
 
 
     @Given("the login page is open")
-    public void the_login_page_is_open() {
+    public void loginPageIsOpen() {
         loginPage = new LoginPage();
         System.out.println("Move To login page? " + loginPage.moveToPage());
 
@@ -30,7 +30,7 @@ public class LoginSteps {
 
 
     @When("the user enters valid credentials")
-    public void the_user_enters_valid_credentials() {
+    public void enterValidCredentials() {
         prop = ReadPropertyFile.readProperties(configPropertiesFile);
         String email = prop.getProperty("user.email");
         String password = prop.getProperty("user.password");
@@ -39,7 +39,7 @@ public class LoginSteps {
     }
 
     @Then("the user is logged in successfully")
-    public void the_user_is_logged_in_successfully() {
+    public void loggedInSuccessfully() {
         assert loginPage.checkLogin();
 
     }
