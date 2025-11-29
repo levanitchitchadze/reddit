@@ -19,9 +19,9 @@ import java.util.Properties;
 
 public class ProfileSteps {
     private LoginPage loginPage=new LoginPage();
-    private static Assertion assertion=new Assertion();
-    private AndroidDriver driver= DriverManager.getDriver();
-    private String AVATAR_SELECTOR="inner_peeking_snoovatar";
+    private static final Assertion assertion=new Assertion();
+    private final AndroidDriver driver= DriverManager.getDriver();
+
     @FindBy(id = "inner_peeking_snoovatar")
     private WebElement AVATAR;
     @FindBy(xpath = "//android.widget.Button[@content-desc=\"Profile\"]")
@@ -41,7 +41,7 @@ public class ProfileSteps {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 
         try {
-            driver.findElement(By.id(AVATAR_SELECTOR)).isDisplayed();
+            AVATAR.isDisplayed();
         }catch (NotFoundException ignored){
             loginPage.moveToPage();
             loginPage.login(prop.getProperty("user.email"),prop.getProperty("user.password"));
